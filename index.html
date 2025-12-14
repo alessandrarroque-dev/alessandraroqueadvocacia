@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alessandra Roque | Advocacia Criminal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --gold:#d4af37;
+      --goldSoft:#e6d8a8;
+      --text:#eaeaea;
+      --muted:#d7d7d7;
+      --overlay:rgba(55,55,55,0.55);  /* camada cinza fosca no topo */
+      --overlay2:rgba(18,18,18,0.35);
+      --bg:#0c0c0c;
+      --sectionGray1:#2b2b2b;         /* cinza escuro elegante (não preto) */
+      --sectionGray2:#3a3a3a;
+      --shadow:0 0 20px rgba(212,175,55,.22);
+      --shadowSoft:0 0 12px rgba(212,175,55,.16);
+      --radius:12px;
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{scroll-behavior:smooth}
+    body{
+      font-family: "Playfair Display", serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
+    }
+
+    /* ===== MENU ===== */
+    nav{
+      position:fixed;
+      top:0;left:0;width:100%;
+      background:rgba(0,0,0,0.80);
+      backdrop-filter: blur(7px);
+      border-bottom:1px solid rgba(212,175,55,.5);
+      z-index:1000;
+      display:flex;
+      justify-content:center;
+      gap:24px;
+      padding:14px 18px;
+    }
+    nav a{
+      color:var(--gold);
+      text-decoration:none;
+      font-size:1rem;
+      transition:.25s;
+      white-space:nowrap;
+    }
+    nav a:hover{
+      color:#fff;
+      text-shadow:0 0 10px rgba(212,175,55,.35);
+    }
+
+    /* ===== ANIMAÇÕES ===== */
+    @keyframes fadeInHero{
+      from{opacity:0;transform:translateY(18px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+    @keyframes pulseGold{
+      0%,100%{box-shadow:0 0 10px rgba(212,175,55,0.35);}
+      50%{box-shadow:0 0 26px rgba(212,175,55,0.75);}
+    }
+
+    /* ===== HERO / TOPO ===== */
+    header.hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      padding:100px 18px 60px; /* espaço por causa do menu fixo */
+      background:
+        linear-gradient(var(--overlay), var(--overlay2)),
+        url('curitiba.jpg') center/cover no-repeat;
+    }
+
+    .hero-inner{
+      width:min(var(--max), 92vw);
+      animation: fadeInHero 1.2s ease forwards;
+    }
+
+    .crest{
+      width:140px;
+      height:auto;
+      margin:0 auto 18px;
+      display:block;
+      filter: drop-shadow(0 0 10px rgba(212,175,55,.18));
+    }
+
+    .title{
+      font-size:clamp(2.2rem, 4vw, 3.4rem);
+      color:var(--gold);
+      letter-spacing:1px;
+      text-shadow:0 0 12px rgba(212,175,55,.25);
+      margin-bottom:8px;
+    }
+
+    .subtitle{
+      font-size:clamp(1.1rem, 2vw, 1.5rem);
+      color:var(--gold);
+      margin-bottom:6px;
+    }
+
+    .oab{
+      font-size:0.95rem;
+      letter-spacing:1.5px;
+      color:var(--goldSoft);
+      margin-bottom:18px;
+    }
+
+    .lead{
+      max-width:920px;
+      margin:0 auto 24px;
+      font-size:clamp(1.05rem, 2vw, 1.35rem);
+      line-height:1.6;
+      color:#f2f2f2;
+      font-style:italic;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border:1px solid var(--gold);
+      color:var(--gold);
+      padding:12px 26px;
+      border-radius:10px;
+      text-decoration:none;
+      transition:.25s;
+      background:rgba(0,0,0,0.15);
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+      background:rgba(212,175,55,0.12);
+      box-shadow: var(--shadowSoft);
+    }
+
+    .btn.pulse{
+      animation:pulseGold 3s infinite ease-in-out;
+    }
+
+    /* ===== SEÇÕES COM FADE-UP ===== */
+    section{
+      padding:90px 10vw;
+      opacity:0;
+      transform:translateY(38px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    section.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .section-title{
+      color:var(--gold);
+      font-size:clamp(1.5rem, 2.6vw, 2rem);
+      margin-bottom:26px;
+      border-bottom:1px solid rgba(212,175,55,.7);
+      display:inline-block;
+      padding-bottom:8px;
+    }
+
+    /* ===== SOBRE ===== */
+    #sobre{
+      background:linear-gradient(135deg, var(--sectionGray1), var(--sectionGray2));
+    }
+
+    .sobre-wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:56px;
+      align-items:center;
+    }
+
+    .sobre-text p{
+      color:var(--text);
+      font-size:1.08rem;
+      line-height:1.85;
+      margin-bottom:14px;
+    }
+
+    .sobre-actions{
+      margin-top:18px;
+    }
+
+    .sobre-foto{
+      display:flex;
+      justify-content:flex-end;
+    }
+
+    .sobre-foto img{
+      width:min(410px, 40vw);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: transform .8s ease, filter .8s ease;
+      display:block;
+    }
+    .sobre-foto img:hover{
+      transform:scale(1.05);
+      filter:brightness(1.12);
+    }
+
+    /* ===== DIFERENCIAIS ===== */
+    #diferenciais{
+      background:#141414;
+    }
+
+    .dif-wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+    }
+
+    .dif-item{
+      border-left:3px solid var(--gold);
+      padding-left:18px;
+    }
+
+    .dif-item h4{
+      color:var(--gold);
+      font-size:1.15rem;
+      margin-bottom:6px;
+    }
+
+    .dif-item p{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:1.02rem;
+    }
+
+    /* ===== SERVIÇOS ===== */
+    #servicos{
+      background:radial-gradient(circle at center, #1a1a1a 0%, #0b0b0b 70%, #070707 100%);
+      text-align:center;
+    }
+
+    .grid-serv{
+      max-width:var(--max);
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+      gap:18px;
+    }
+
+    .card{
+      border:1px solid rgba(212,175,55,.85);
+      border-radius:10px;
+      padding:18px 16px;
+      background:rgba(212,175,55,.06);
+      transition:.25s;
+      text-align:left;
+      color:var(--text);
+      font-size:1.05rem;
+    }
+    .card:hover{
+      transform:translateY(-2px);
+      background:rgba(212,175,55,.12);
+      box-shadow: var(--shadowSoft);
+    }
+
+    .serv-actions{
+      margin-top:34px;
+      display:flex;
+      justify-content:center;
+    }
+
+    /* ===== RODAPÉ ===== */
+    footer{
+      padding:36px 18px;
+      background:#000;
+      border-top:1px solid rgba(212,175,55,.7);
+      text-align:center;
+      color:var(--gold);
+    }
+    footer a{
+      color:var(--gold);
+      text-decoration:none;
+    }
+    footer a:hover{color:#fff}
+
+    /* ===== WHATS FLUTUANTE ===== */
+    .whats-float{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      background:#25d366;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:30px;
+      text-decoration:none;
+      box-shadow:0 10px 26px rgba(0,0,0,.35);
+      z-index:999;
+      transition:transform .25s ease;
+    }
+    .whats-float:hover{transform:scale(1.08)}
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 980px){
+      nav{gap:14px; padding:12px 12px; overflow-x:auto; justify-content:flex-start}
+      header.hero{padding-top:110px}
+      .sobre-wrap{grid-template-columns:1fr; gap:28px}
+      .sobre-foto{justify-content:center}
+      .sobre-foto img{width:min(520px, 92vw)}
+      .card{text-align:center}
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#sobre">Quem é Alessandra</a>
+    <a href="#diferenciais">Diferenciais</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <!-- ===== TOPO ===== -->
+  <header class="hero" id="inicio">
+    <div class="hero-inner">
+      <img class="crest" src="brasao.PNG" alt="Brasão Alessandra Roque">
+      <h1 class="title">Alessandra Roque</h1>
+      <p class="subtitle">Advogada Criminalista</p>
+      <p class="oab">OAB/PR 110.058</p>
+
+      <p class="lead">
+        Se você ou algum ente querido está enfrentando um processo criminal, conte com uma especialista para proteger sua liberdade e seus direitos.
+      </p>
+
+      <a class="btn pulse" href="https://wa.me/5541999774611?text=Olá,%20Alessandra!%20Preciso%20de%20ajuda%20em%20um%20caso%20criminal" target="_blank" rel="noopener">
+        ENTRAR EM CONTATO <i class="fab fa-whatsapp" aria-hidden="true"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- ===== SOBRE ===== -->
+  <section id="sobre">
+    <div class="sobre-wrap">
+      <div class="sobre-text">
+        <h2 class="section-title">Quem é Alessandra Roque?</h2>
+        <p>
+          Alessandra Roque é advogada criminalista, reconhecida por sua atuação firme, estratégica e humanizada na defesa
+          dos direitos e garantias fundamentais.
+        </p>
+        <p>
+          Cada caso é conduzido de forma personalizada, com análise técnica cuidadosa, comunicação clara e compromisso com a
+          melhor solução possível. O direito é universal, mas a busca por justiça é pessoal.
+        </p>
+
+        <div class="sobre-actions">
+          <a class="btn pulse" href="https://wa.me/5541999774611?text=Olá,%20Alessandra!%20Gostaria%20de%20falar%20sobre%20um%20caso." target="_blank" rel="noopener">
+            ENTRAR EM CONTATO <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="sobre-foto">
+        <img src="all.jpg" alt="Alessandra Roque">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DIFERENCIAIS ===== -->
+  <section id="diferenciais">
+    <h2 class="section-title">Nossos Diferenciais</h2>
+
+    <div class="dif-wrap">
+      <div class="dif-item">
+        <h4>Atendimento humanizado</h4>
+        <p>
+          Escuta ativa, empatia e discrição. Acreditamos que um acolhimento real é o primeiro passo para uma defesa eficaz.
+        </p>
+      </div>
+
+      <div class="dif-item">
+        <h4>Atuação estratégica e personalizada</h4>
+        <p>
+          Cada situação exige uma linha de defesa própria. Construímos estratégias jurídicas sob medida, com foco em resultado e segurança.
+        </p>
+      </div>
+
+      <div class="dif-item">
+        <h4>Agilidade e acompanhamento constante</h4>
+        <p>
+          Controle rigoroso de prazos e movimentações, com uso de ferramentas digitais para respostas rápidas e atuação eficiente.
+        </p>
+      </div>
+
+      <div class="dif-item">
+        <h4>Atualização contínua</h4>
+        <p>
+          Estudo permanente de legislação, jurisprudência e doutrina, garantindo decisões fundamentadas e alinhadas às mudanças do direito.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVIÇOS ===== -->
+  <section id="servicos">
+    <h2 class="section-title">Serviços</h2>
+
+    <div class="grid-serv">
+      <div class="card">Prisão em Flagrante</div>
+      <div class="card">Audiência de Custódia</div>
+      <div class="card">Liberdade Provisória</div>
+      <div class="card">Relaxamento de Prisão</div>
+      <div class="card">Inquérito Policial</div>
+      <div class="card">Defesa Criminal</div>
+      <div class="card">Execução Penal</div>
+      <div class="card">Habeas Corpus</div>
+      <div class="card">Revisão Criminal</div>
+      <div class="card">Recurso aos Tribunais Superiores</div>
+      <div class="card">Lei de Drogas</div>
+      <div class="card">Medida Protetiva</div>
+    </div>
+
+    <div class="serv-actions">
+      <a class="btn pulse" href="https://wa.me/5541999774611?text=Olá,%20Alessandra!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços." target="_blank" rel="noopener">
+        ENTRAR EM CONTATO <i class="fab fa-whatsapp" aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== CONTATO / RODAPÉ ===== -->
+  <footer id="contato">
+    <p>📧 <a href="mailto:alessandraroque@live.com">alessandraroque@live.com</a></p>
+    <p>📱 <a href="https://wa.me/5541999774611" target="_blank" rel="noopener">+55 (41) 99977-4611</a></p>
+    <p style="margin-top:6px">© 2025 Alessandra Roque — Advocacia Criminal</p>
+  </footer>
+
+  <!-- ===== WHATS FLUTUANTE ===== -->
+  <a class="whats-float" href="https://wa.me/5541999774611?text=Olá,%20Alessandra!%20Preciso%20de%20ajuda%20em%20um%20caso%20criminal" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <!-- ===== FADE-UP NO SCROLL ===== -->
+  <script>
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){ entry.target.classList.add("visible"); }
+      });
+    }, { threshold: 0.18 });
+
+    sections.forEach(sec => observer.observe(sec));
+  </script>
+
+</body>
+</html>
